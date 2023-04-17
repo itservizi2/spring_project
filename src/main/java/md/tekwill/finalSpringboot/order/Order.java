@@ -1,6 +1,7 @@
 package md.tekwill.finalSpringboot.order;
 
 import jakarta.persistence.*;
+import md.tekwill.finalSpringboot.cart.Cart;
 
 @Entity
 @Table(name = "orders")
@@ -87,5 +88,14 @@ public class Order {
                 ", quantity=" + quantity +
                 ", totalPricePerProduct=" + totalPricePerProduct +
                 '}';
+    }
+
+    public void addItem(Object product, int quantity) {
+    }
+
+    public <OrderItem> void addOrderItem(OrderItem orderItem) {
+    }
+
+    public void addCartItem(Cart cartItem) {
     }
 }

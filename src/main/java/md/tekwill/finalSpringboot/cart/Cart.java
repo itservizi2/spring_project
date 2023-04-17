@@ -78,7 +78,8 @@ public class Cart {
     }
 
 
-
-
+    public Object getProduct() {
+        return null;
+    }
 }
 

@@ -2,6 +2,8 @@ package md.tekwill.finalSpringboot.product;
 
 import md.tekwill.finalSpringboot.cart.Cart;
 import md.tekwill.finalSpringboot.cart.CartRepository;
+import md.tekwill.finalSpringboot.order.Order;
+import md.tekwill.finalSpringboot.order.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,8 @@ public class ProductService {
     private ProductRepository repo;
     @Autowired
     private CartRepository cartRepo;
+    @Autowired
+    private OrderRepository orderRepo;
 
     public List<Product> listAll() {
         return (List<Product>) repo.findAll();
@@ -45,10 +49,13 @@ public class ProductService {
 
     public void placeOrder() {
         List<Cart> cartItems = (List<Cart>) cartRepo.findAll();
-        // Perform order placement logic using the cartItems list
+        Order order = new Order();
+        for (Cart cartItem : cartItems) {
+            order.addCartItem(cartItem);
+        }
+        orderRepo.save(order);
+        cartRepo.deleteAll();
     }
 }
-
-
 
 
